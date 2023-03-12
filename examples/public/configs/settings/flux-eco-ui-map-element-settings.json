@@ -1,0 +1,14 @@
+{
+  "mapContainerDimensions": {
+    "width": "500px",
+    "height": "500px"
+  },
+  "mapElementLayers": [
+    {
+      "layerOptions": {
+        "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+      },
+      "layerUrl": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    }
+  ]
+}

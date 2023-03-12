@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://flux-eco.fluxlabs.ch/components/flux-eco-ui-page-element/schemas/state.json",
+  "type": "object",
+  "properties": {
+    "stylesheetUrl": {
+      "type": "string"
+    },
+    "pageSections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PageSection"
+      },
+      "default": []
+    }
+  },
+  "required": [
+    "stylesheetUrl",
+    "pageSections"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "PageSection": {
+      "type": "object",
+      "properties": {
+        "gridContainerElementConfigUrl": {
+          "type": "string"
+        },
+        "readStateActionUrl": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "gridContainerElementConfigUrl",
+        "readStateActionUrl"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

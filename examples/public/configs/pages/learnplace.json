@@ -1,0 +1,10 @@
+{
+  "$schema": "../../flux-eco-ui-page-element/schemas/state.json",
+  "pageSections": [
+    {
+      "gridContainerElementConfigUrl": "/public/configs/containers/learnplaceMap.json",
+      "readStateActionUrl": "/api/learnplace/{id}/readState"
+    }
+  ],
+  "stylesheetUrl": "/public/assets/learnplacePage.css"
+}
