@@ -7,6 +7,7 @@
 
 /**
  * @typedef {PageSection} PageSection
- * @property {string} gridContainerElementConfigUrl
- * @property {string} readStateActionUrl
+ * @property {string} gridContainerId
+ * @property {FluxEcoUiGridContainerElementSettings} gridContainerElementSettings
+ * @property {FluxEcoUiGridContainerElementState} gridContainerElementItems
  */

@@ -53,13 +53,6 @@ export class FluxEcoUiPageElement extends HTMLElement {
         return link;
     }
 
-    /**
-     * @returns {string[]}
-     */
-    static get observedAttributes() {
-        return ["state"];
-    }
-
     static get tagName() {
         return 'flux-eco-ui-page-element'
     }
@@ -93,16 +86,6 @@ export class FluxEcoUiPageElement extends HTMLElement {
         }
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        switch (name) {
-            case "state":
-                this.changeState(JSON.parse(newValue));
-                break;
-            default:
-                break;
-        }
-    }
-
     changeState(newState) {
         //todo validate
 
@@ -113,6 +96,9 @@ export class FluxEcoUiPageElement extends HTMLElement {
      * @param {FluxEcoUiPageElementState} validatedState
      */
     async #applyStateChanged(validatedState) {
+
+        console.log(validatedState);
+
         this.#shadow.innerHTML = "";
         this.#contentContainer = this.#createContentContainerElement(this.#id)
         this.#shadow.appendChild(this.#contentContainer);
@@ -122,29 +108,13 @@ export class FluxEcoUiPageElement extends HTMLElement {
 
         if (validatedState.hasOwnProperty(FluxEcoUiPageElement.stateName.pageSections)) {
             const pageSections = validatedState.pageSections;
+            for (const [key, pageSection] of Object.entries(pageSections)) {
 
-            async function processPageSections(pageSections, outbounds, contentContainer) {
-                for (let i = 0; i < pageSections.length; i++) {
-                    const pageSection = pageSections[i];
-                    const gridContainerElement = await outbounds.createGridContainerElement(pageSection.gridContainerElementConfigUrl);
-                    contentContainer.appendChild(gridContainerElement);
-
-                    const gridContainerElementState = await outbounds.readState(pageSection.readStateActionUrl);
-
-                    console.log(gridContainerElementState);
-
-
-                    gridContainerElement.changeState(gridContainerElementState)
-                }
+                const gridContainerElement = await this.#outbounds.createGridContainerElement(pageSection.gridContainerId, pageSection.gridContainerElementSettings, pageSection.gridContainerElementItems);
+                this.#contentContainer.appendChild(gridContainerElement);
             }
-            processPageSections(pageSections, this.#outbounds, this.#contentContainer);
         }
-
         this.#state = validatedState;
-        const stateStringified = JSON.stringify(this.#state)
-        if (this.getAttribute("state") !== stateStringified) {
-            this.setAttribute("state", stateStringified);
-        }
     }
 
 

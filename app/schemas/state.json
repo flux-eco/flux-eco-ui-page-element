@@ -7,34 +7,31 @@
       "type": "string"
     },
     "pageSections": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/PageSection"
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "gridContainerId": {
+            "type": "string"
+          },
+          "gridContainerElementSettings": {
+            "$ref": "../../../../../flux-eco-ui-page-element/app/schemas/settings.json"
+          },
+          "gridContainerElementItems": {
+            "$ref": "../../flux-eco-ui-grid-container-element/schemas/state.json"
+          }
+        },
+        "required": [
+          "gridContainerId",
+          "gridContainerElementSettings",
+          "gridContainerElementItems"
+        ],
+        "additionalProperties": false
       },
-      "default": []
+      "minimum": 1
     }
   },
   "required": [
-    "stylesheetUrl",
     "pageSections"
-  ],
-  "additionalProperties": false,
-  "$defs": {
-    "PageSection": {
-      "type": "object",
-      "properties": {
-        "gridContainerElementConfigUrl": {
-          "type": "string"
-        },
-        "readStateActionUrl": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "gridContainerElementConfigUrl",
-        "readStateActionUrl"
-      ],
-      "additionalProperties": false
-    }
-  }
+  ]
 }
