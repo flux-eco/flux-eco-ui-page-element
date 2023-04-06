@@ -8,9 +8,9 @@ export class FluxEcoUiPageElement extends HTMLElement {
      */
     #settings;
     /**
-     * @type {FluxEcoUiPageElementState|null}
+     * @type {FluxEcoUiPageElementAttributes|null}
      */
-    #state;
+    #attributes;
     /**
      * @type ShadowRoot
      */
@@ -36,7 +36,7 @@ export class FluxEcoUiPageElement extends HTMLElement {
         }
         this.#settings = validatedConfig.settings;
         if (validatedConfig.hasOwnProperty("initialState")) {
-            this.#state = validatedConfig.initialState;
+            this.#attributes = validatedConfig.initialState;
         }
         this.#outbounds = validatedConfig.outbounds;
 
@@ -57,7 +57,7 @@ export class FluxEcoUiPageElement extends HTMLElement {
         return 'flux-eco-ui-page-element'
     }
 
-    static get stateName() {
+    static get attributeName() {
         return {
             stylesheetUrl: "stylesheetUrl",
             pageSections: "pageSections"
@@ -81,40 +81,39 @@ export class FluxEcoUiPageElement extends HTMLElement {
         this.#contentContainer = this.#createContentContainerElement(this.#id)
         this.#shadow.appendChild(this.#contentContainer);
 
-        if (this.#state) {
-            this.#applyStateChanged(this.#state)
+        if (this.#attributes) {
+            this.#applyAttributesChanged(this.#attributes)
         }
     }
 
-    changeState(newState) {
+    changeAttributes(attributes) {
         //todo validate
 
-        this.#applyStateChanged(newState);
+        this.#applyAttributesChanged(attributes);
     }
 
     /**
-     * @param {FluxEcoUiPageElementState} validatedState
+     * @param {FluxEcoUiPageElementAttributes} validatedAttributes
      */
-    async #applyStateChanged(validatedState) {
+    async #applyAttributesChanged(validatedAttributes) {
 
-        console.log(validatedState);
+        console.log(validatedAttributes);
 
         this.#shadow.innerHTML = "";
         this.#contentContainer = this.#createContentContainerElement(this.#id)
         this.#shadow.appendChild(this.#contentContainer);
-        if (validatedState.hasOwnProperty(FluxEcoUiPageElement.stateName.stylesheetUrl)) {
-            this.#shadow.appendChild(this.#createStyleSheetLinkElement(validatedState.stylesheetUrl));
+        if (validatedAttributes.hasOwnProperty(FluxEcoUiPageElement.attributeName.stylesheetUrl)) {
+            this.#shadow.appendChild(this.#createStyleSheetLinkElement(validatedAttributes.stylesheetUrl));
         }
 
-        if (validatedState.hasOwnProperty(FluxEcoUiPageElement.stateName.pageSections)) {
-            const pageSections = validatedState.pageSections;
+        if (validatedAttributes.hasOwnProperty(FluxEcoUiPageElement.attributeName.pageSections)) {
+            const pageSections = validatedAttributes.pageSections;
             for (const [key, pageSection] of Object.entries(pageSections)) {
-
-                const gridContainerElement = await this.#outbounds.createGridContainerElement(pageSection.gridContainerId, pageSection.gridContainerElementSettings, pageSection.gridContainerElementItems);
+                const gridContainerElement = await this.#outbounds.createGridContainerElement(pageSection.gridContainerId, pageSection.gridContainerElementSettings, pageSection.gridContainerElementAttributes);
                 this.#contentContainer.appendChild(gridContainerElement);
             }
         }
-        this.#state = validatedState;
+        this.#attributes = validatedAttributes;
     }
 
 

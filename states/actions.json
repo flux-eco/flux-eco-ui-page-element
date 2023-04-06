@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../flux-eco/schemas/flux-eco-actions-schema.json",
+  "changeAttributes": {
+    "parameters": {
+      "attributes": {
+        "$ref": "../schemas/attributes-schema.json",
+        "in": "methodParameter",
+        "type": "object"
+      }
+    }
+  }
+}

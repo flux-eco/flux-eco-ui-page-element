@@ -1,13 +1,14 @@
 /**
  * FluxEcoUiPageElement state.
- * @typedef {Object} FluxEcoUiPageElementState
+ * @typedef {Object} FluxEcoUiPageElementAttributes
  * @property {string} stylesheetUrl
- * @property {PageSection[]} pageSections
+ * @property {{content:PageSection}} pageSections
  */
 
 /**
  * @typedef {PageSection} PageSection
  * @property {string} gridContainerId
  * @property {FluxEcoUiGridContainerElementSettings} gridContainerElementSettings
- * @property {FluxEcoUiGridContainerElementState} gridContainerElementItems
+ * @property {FluxEcoUiGridContainerElementAttributes} gridContainerElementAttributes
  */
+

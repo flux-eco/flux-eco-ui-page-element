@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://flux-eco.fluxlabs.ch/components/flux-eco-ui-page-element/schemas/state.json",
+  "$id": "https://flux-eco.fluxlabs.ch/components/flux-eco-ui-page-element/schemas/attributes-schema.json",
   "type": "object",
   "properties": {
     "stylesheetUrl": {
@@ -15,16 +15,16 @@
             "type": "string"
           },
           "gridContainerElementSettings": {
-            "$ref": "../../../../../flux-eco-ui-page-element/app/schemas/settings.json"
+            "$ref": "settings-schema.json"
           },
-          "gridContainerElementItems": {
-            "$ref": "../../flux-eco-ui-grid-container-element/schemas/state.json"
+          "gridContainerElementAttributes": {
+            "$ref": "../../flux-eco-ui-grid-container-element/schemas/attributes-schema.json"
           }
         },
         "required": [
           "gridContainerId",
           "gridContainerElementSettings",
-          "gridContainerElementItems"
+          "gridContainerElementAttributes"
         ],
         "additionalProperties": false
       },
